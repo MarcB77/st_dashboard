@@ -20,7 +20,7 @@ def _corpus(text):
 def get_corpus(df):
     df['Prompt_lists'] = df['Prompt'].apply(_corpus)
     corpus = []
-    for i in df.shape[0]:
+    for i in len(df.shape[0]):
         corpus += df['Prompt_lists'][i]
     len(corpus)
     return corpus
