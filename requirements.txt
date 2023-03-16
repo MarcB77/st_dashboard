@@ -1,4 +1,4 @@
-matplotlib==3.2.1
+matplotlib
 nltk==3.7
 pandas==1.4.4
 Pillow==9.4.0
