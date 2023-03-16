@@ -1,0 +1,6 @@
+streamlit-chat
+openai
+spacy
+pandas
+seaborn
+https://github.com/explosion/spacy-models/releases/download/nl_core_news_lg-3.5.0/nl_core_news_lg-3.5.0.tar.gz 
