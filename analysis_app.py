@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv('./sample_dataset/labeled_dataset.csv')
 df['word_count'] = df['Prompt'].apply(lambda x: len(x.split()))
+sns.set(rc={'axes.facecolor':'#100c44', 'figure.facecolor':'#100c44'})
+
 
 image = Image.open('image/southfields_logo.png')
 st.image(image)
@@ -17,9 +19,6 @@ selected_sport = st.multiselect("Select het type sport waarvan je een analyze wi
                default="Voetbal"
                )
 
-st.slider("Aantal bins",
-          min_value=10,
-          max_value=100)
 
 if selected_sport != []:
     fig = plt.figure(figsize=(10,5))
