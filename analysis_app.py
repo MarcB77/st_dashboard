@@ -25,7 +25,7 @@ selected_sport = st.multiselect("Selecteer een type sport:",
                default="Voetbal"
                )
 
-with st.spinner("Just a moment ..."):
+with st.spinner("Een momentje..."):
     if selected_sport != []:
         fig = plt.figure(figsize=(12,15))
         ax1 = fig.add_subplot(5, 1, 1)
