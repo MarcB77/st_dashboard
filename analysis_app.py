@@ -55,13 +55,13 @@ if selected_sport != []:
     plt.subplots_adjust(hspace=0.5)
     sns.histplot(
         df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
-        color="#100c44", binwidth = 1, alpha = 0.6, ax=ax1
+        color="#100c44", binwidth = 1, alpha = 0.8, ax=ax1
         )
     ax1.set_title('Total amount of words')
 
     corpus = get_corpus(df)
     words, freq = most_common_words(corpus)
-    sns.barplot(x=freq, y=words, color="#100c44", ax=ax2)
+    sns.barplot(x=freq, y=words, color="#100c44", ax=ax2, saturation=0.8)
     ax2.set_title('Top 10 Most Frequently Occuring Words')
 
     wordcloud= WordCloud(max_font_size=60, max_words=100,width=1000,height=200, stopwords=STOPWORDS, background_color='#FFFFFF').generate_from_frequencies(
