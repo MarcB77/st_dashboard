@@ -67,8 +67,9 @@ if selected_sport != []:
     wordcloud= WordCloud(max_font_size=60, max_words=100,width=1000,height=200, stopwords=STOPWORDS, background_color='#100c44').generate_from_frequencies(
     FreqDist([word for prompt in df.Prompt_lists for word in prompt])
     )
+    sns.set(rc={'axes.facecolor':'#FFFFFF', 'figure.facecolor':'#FFFFFF'})
     ax3.imshow(wordcloud)
     ax3.grid(visible=False)
-    ax3.set_facecolor("white")
+    ax3.set("white")
 
     st.pyplot(fig)
