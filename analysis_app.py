@@ -7,6 +7,7 @@ from collections import Counter
 from wordcloud import STOPWORDS, WordCloud
 from nltk.probability import FreqDist
 from tqdm import trange
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 
@@ -35,6 +36,23 @@ def most_common_words(corpus):
         freq.append(count)
     return words, freq
 
+def Bigrams(df):
+    cv = CountVectorizer(ngram_range=(2,2))
+    bigrams = cv.fit_transform(df['Prompt'])
+
+    count_values = bigrams.toarray().sum(axis=0)
+    ngram_freq = pd.DataFrame(sorted([(count_values[i], k) for k, i in cv.vocabulary_.items()], reverse = True))
+    ngram_freq.columns = ["frequency", "ngram"]
+    return ngram_freq, "Bigrams"
+
+def Trigrams(df):
+    cv1 = CountVectorizer(ngram_range=(3,3))
+    trigrams = cv1.fit_transform(df['Prompt'])
+
+    count_values = trigrams.toarray().sum(axis=0)
+    ngram_freq = pd.DataFrame(sorted([(count_values[i], k) for k, i in cv1.vocabulary_.items()], reverse = True))
+    ngram_freq.columns = ["frequency", "ngram"]
+    return ngram_freq, "Trigrams"
 
 image = Image.open('image/southfields_logo.png')
 st.image(image)
@@ -49,9 +67,11 @@ selected_sport = st.multiselect("Select het type sport waarvan je een analyze wi
 
 if selected_sport != []:
     fig = plt.figure(figsize=(10,8))
-    ax1 = fig.add_subplot(3, 1, 1)
-    ax2 = fig.add_subplot(3, 1, 2)
-    ax3 = fig.add_subplot(3, 1, 3)
+    ax1 = fig.add_subplot(5, 1, 1)
+    ax2 = fig.add_subplot(5, 1, 2)
+    ax3 = fig.add_subplot(5, 1, 3)
+    ax4 = fig.add_subplot(5, 1, 4)
+    ax5 = fig.add_subplot(5, 1, 5)
     plt.subplots_adjust(hspace=0.5)
     sns.histplot(
         df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
@@ -71,5 +91,13 @@ if selected_sport != []:
     ax3.grid(visible=False)
     ax3.set_xticks([])
     ax3.set_yticks([])
+
+    ngram_freq, ngram_type = Bigrams(df)
+    sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#100c44", ax=ax4)
+    plt.title('Top 10 Most Frequently Occuring {}'.format(ngram_type))
+
+    ngram_freq, ngram_type = Trigrams(df)
+    sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#100c44", ax=ax5)
+    plt.title('Top 10 Most Frequently Occuring {}'.format(ngram_type))
 
     st.pyplot(fig)

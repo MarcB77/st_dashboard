@@ -1,5 +1,6 @@
 tqdm
 matplotlib
+scikit-learn
 nltk==3.7
 pandas==1.4.4
 Pillow==9.4.0
