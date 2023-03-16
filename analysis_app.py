@@ -69,5 +69,6 @@ if selected_sport != []:
     )
     ax3.imshow(wordcloud)
     ax3.grid(visible=False)
+    ax3.set_facecolor("white")
 
     st.pyplot(fig)
