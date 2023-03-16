@@ -18,7 +18,7 @@ sns.set(rc={'axes.facecolor':'#FFFFFF', 'figure.facecolor':'#FFFFFF'})
 image = Image.open('image/southfields_logo.png')
 st.image(image)
 
-st.write(""" # South-Fields Analysis """)
+st.write(""" # South-Fields Analyze """)
 selected_sport = st.multiselect("Selecteer een type sport:",
                max_selections=1,
                options=df.Type_sport.unique(),
@@ -38,12 +38,14 @@ with st.spinner("Een momentje..."):
             df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
             color="#100c44", binwidth = 1, alpha = 0.7, ax=ax1
             )
-        ax1.set_title('Total amount of words')
+        ax1.set_title('Totaal aantal woorden')
+        ax1.set_xlabel("Aantal woorden")
+        ax1.set_ylabel("Aantal samenvatting\nmet dit aantal woorden")
 
         corpus = get_corpus(df)
         words, freq = most_common_words(corpus)
         sns.barplot(x=freq, y=words, color="#100c44", ax=ax2)
-        ax2.set_title('Top 10 Most Frequently Occuring Words')
+        ax2.set_title('Top 10 meest voorkomende woorden')
 
         wordcloud= WordCloud(max_font_size=60, max_words=100,width=1000,height=200, stopwords=STOPWORDS, background_color='#FFFFFF').generate_from_frequencies(
         FreqDist([word for prompt in df.Prompt_lists for word in prompt])
@@ -55,10 +57,10 @@ with st.spinner("Een momentje..."):
 
         ngram_freq, ngram_type = Bigrams(df)
         sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#100c44", ax=ax4)
-        ax4.set_title('Top 10 Most Frequently Occuring {}'.format(ngram_type))
+        ax4.set_title('Top 10 meest voorkomende {}'.format(ngram_type))
 
         ngram_freq, ngram_type = Trigrams(df)
         sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#100c44", ax=ax5)
-        ax5.set_title('Top 10 Most Frequently Occuring {}'.format(ngram_type))
+        ax5.set_title('Top 10 meest voorkomende {}'.format(ngram_type))
 
         st.pyplot(fig)
