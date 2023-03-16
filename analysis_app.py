@@ -5,6 +5,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from wordcloud import STOPWORDS, WordCloud
 from nltk.probability import FreqDist
+import time
 
 from utils.analysis import get_corpus, most_common_words, Bigrams, Trigrams
 
@@ -24,6 +25,8 @@ selected_sport = st.multiselect("Selecteer een type sport:",
                default="Voetbal"
                )
 
+with st.spinner("Just a moment ..."):
+    time.sleep(1)
 
 if selected_sport != []:
     fig = plt.figure(figsize=(12,15))
