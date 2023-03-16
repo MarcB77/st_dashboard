@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv('./sample_dataset/labeled_dataset.csv')
 df['word_count'] = df['Prompt'].apply(lambda x: len(x.split()))
-sns.set(rc={'axes.facecolor':'#100c44', 'figure.facecolor':'#100c44'})
+sns.set(rc={'axes.facecolor':'#100c44', 'figure.facecolor':'#FFFFFF'})
 
 
 image = Image.open('image/southfields_logo.png')
