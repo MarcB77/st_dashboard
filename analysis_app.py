@@ -49,10 +49,9 @@ selected_sport = st.multiselect("Select het type sport waarvan je een analyze wi
 
 if selected_sport != []:
     fig = plt.figure(figsize=(10,5))
-    ax1 = fig.add_subplot(2, 2, 1)
-    ax2 = fig.add_subplot(2, 2, 2)
-    ax3 = fig.add_subplot(2, 2, 3)
-    ax4 = fig.add_subplot(2, 2, 4)
+    ax1 = fig.add_subplot(3, 1, 1)
+    ax2 = fig.add_subplot(3, 1, 2)
+    ax3 = fig.add_subplot(3, 1, 3)
 
     sns.histplot(
         df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
