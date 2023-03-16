@@ -17,11 +17,12 @@ selected_sport = st.multiselect("Select het type sport waarvan je een analyze wi
                default="Voetbal"
                )
 
-fig = plt.figure(figsize=(10,5))
-sns.histplot(
-    df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
-    palette="Blues", binwidth = 1, alpha = 0.6
-    )
-fig.title('Total amount of words')
+if selected_sport != None:
+    fig = plt.figure(figsize=(10,5))
+    sns.histplot(
+        df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
+        palette="Blues", binwidth = 1, alpha = 0.6
+        )
+    fig.title('Total amount of words')
 
-st.pyplot(fig)
+    st.pyplot(fig)
