@@ -64,10 +64,9 @@ if selected_sport != []:
     sns.barplot(x=freq, y=words, palette="Blues", ax=ax2)
     ax2.set_title('Top 10 Most Frequently Occuring Words')
 
-    wordcloud= WordCloud(max_font_size=60, max_words=100,width=1000,height=200, stopwords=STOPWORDS, background_color='#100c44').generate_from_frequencies(
+    wordcloud= WordCloud(max_font_size=60, max_words=100,width=1000,height=200, stopwords=STOPWORDS, background_color='#FFFFFF').generate_from_frequencies(
     FreqDist([word for prompt in df.Prompt_lists for word in prompt])
     )
-    sns.set(rc={'axes.facecolor':'#FFFFFF', 'figure.facecolor':'#FFFFFF'})
     ax3.imshow(wordcloud)
     ax3.grid(visible=False)
 
