@@ -49,6 +49,7 @@ selected_sport = st.multiselect("Select het type sport waarvan je een analyze wi
 
 if selected_sport != []:
     fig = plt.figure(figsize=(10,8))
+    fig.tight_layout()
     ax1 = fig.add_subplot(3, 1, 1)
     ax2 = fig.add_subplot(3, 1, 2)
     ax3 = fig.add_subplot(3, 1, 3)
@@ -64,7 +65,7 @@ if selected_sport != []:
     sns.barplot(x=freq, y=words, palette="Blues", ax=ax2)
     ax2.set_title('Top 10 Most Frequently Occuring Words')
 
-    wordcloud= WordCloud(max_font_size=60, max_words=100,width=600,height=200, stopwords=STOPWORDS, background_color='#100c44').generate_from_frequencies(
+    wordcloud= WordCloud(max_font_size=60, max_words=100, stopwords=STOPWORDS, background_color='#100c44').generate_from_frequencies(
     FreqDist([word for prompt in df.Prompt_lists for word in prompt])
     )
     ax3.imshow(wordcloud)
