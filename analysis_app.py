@@ -12,7 +12,7 @@ from tqdm import trange
 
 df = pd.read_csv('./sample_dataset/labeled_dataset.csv')
 df['word_count'] = df['Prompt'].apply(lambda x: len(x.split()))
-sns.set(rc={'axes.facecolor':'#100c44', 'figure.facecolor':'#FFFFFF'})
+sns.set(rc={'axes.facecolor':'#FFFFFF', 'figure.facecolor':'#FFFFFF'})
 
 def _corpus(text):
     text_list = text.split()
@@ -55,13 +55,13 @@ if selected_sport != []:
     plt.subplots_adjust(hspace=0.5)
     sns.histplot(
         df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
-        palette="Blues", binwidth = 1, alpha = 0.6, ax=ax1
+        color="#100c44", binwidth = 1, alpha = 0.6, ax=ax1
         )
     ax1.set_title('Total amount of words')
 
     corpus = get_corpus(df)
     words, freq = most_common_words(corpus)
-    sns.barplot(x=freq, y=words, palette="Blues", ax=ax2)
+    sns.barplot(x=freq, y=words, color="#100c44", ax=ax2)
     ax2.set_title('Top 10 Most Frequently Occuring Words')
 
     wordcloud= WordCloud(max_font_size=60, max_words=100,width=1000,height=200, stopwords=STOPWORDS, background_color='#FFFFFF').generate_from_frequencies(
