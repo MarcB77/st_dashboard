@@ -4,6 +4,7 @@ import streamlit as st
 from PIL import Image
 
 df = pd.read_csv('./sample_dataset/labeled_dataset.csv')
+df['word_count'] = df['Prompt'].apply(lambda x: len(x.split()))
 
 image = Image.open('image/southfields_logo.png')
 st.image(image)
