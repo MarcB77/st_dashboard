@@ -54,10 +54,10 @@ if selected_sport != []:
 
     ngram_freq, ngram_type = Bigrams(df)
     sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#100c44", ax=ax4)
-    plt.title('Top 10 Most Frequently Occuring {}'.format(ngram_type))
+    ax4.set_title('Top 10 Most Frequently Occuring {}'.format(ngram_type))
 
     ngram_freq, ngram_type = Trigrams(df)
     sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#100c44", ax=ax5)
-    plt.title('Top 10 Most Frequently Occuring {}'.format(ngram_type))
+    ax5.set_title('Top 10 Most Frequently Occuring {}'.format(ngram_type))
 
     st.pyplot(fig)
