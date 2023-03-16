@@ -1,9 +1,8 @@
-streamlit-chat
-openai
-spacy
-pandas
-seaborn
 matplotlib==3.2.1
-wordcloud==1.8.2.2
 nltk==3.7
+pandas==1.4.4
+Pillow==9.4.0
+seaborn==0.11.2
+streamlit==1.17.0
+wordcloud==1.8.2.2
 https://github.com/explosion/spacy-models/releases/download/nl_core_news_lg-3.5.0/nl_core_news_lg-3.5.0.tar.gz 
