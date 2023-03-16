@@ -17,7 +17,11 @@ selected_sport = st.multiselect("Select het type sport waarvan je een analyze wi
                default="Voetbal"
                )
 
-if selected_sport != None:
+st.slider("Aantal bins",
+          min_value=10,
+          max_value=100)
+
+if selected_sport != []:
     fig = plt.figure(figsize=(10,5))
     ax1 = fig.add_subplot(1, 1, 1)
 
