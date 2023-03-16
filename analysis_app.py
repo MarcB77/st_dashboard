@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from collections import Counter
 from wordcloud import STOPWORDS, WordCloud
 from nltk.probability import FreqDist
+from tqdm import trange
 
 
 
@@ -20,7 +21,7 @@ def _corpus(text):
 def get_corpus(df):
     df['Prompt_lists'] = df['Prompt'].apply(_corpus)
     corpus = []
-    for i in len(df.shape[0]):
+    for i in trange(df.shape[0], ncols=150, nrows=10, colour='green', smoothing=0.8):
         corpus += df['Prompt_lists'][i]
     len(corpus)
     return corpus
