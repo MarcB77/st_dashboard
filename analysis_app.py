@@ -15,7 +15,7 @@ selected_sport = st.multiselect("Select het type sport waarvan je een analyze wi
                )
 
 word_count_plot = sns.histplot(
-    df.loc[df.Type_sport == selected_sport], x='word_count', kde=True, 
+    df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
     palette="Blues", binwidth = 1, alpha = 0.6
     )
 st.pyplot(word_count_plot)
