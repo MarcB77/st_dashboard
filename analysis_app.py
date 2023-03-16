@@ -70,6 +70,5 @@ if selected_sport != []:
     sns.set(rc={'axes.facecolor':'#FFFFFF', 'figure.facecolor':'#FFFFFF'})
     ax3.imshow(wordcloud)
     ax3.grid(visible=False)
-    ax3.set("white")
 
     st.pyplot(fig)
