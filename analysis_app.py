@@ -68,5 +68,6 @@ if selected_sport != []:
     FreqDist([word for prompt in df.Prompt_lists for word in prompt])
     )
     ax3.imshow(wordcloud)
+    ax3.grid(visible=False)
 
     st.pyplot(fig)
