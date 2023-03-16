@@ -60,7 +60,6 @@ if selected_sport != []:
     ax1.set_title('Total amount of words')
 
     corpus = get_corpus(df)
-    df['Prompt_lists'] = df['Prompt'].apply(corpus)
     words, freq = most_common_words(corpus)
     sns.barplot(x=freq, y=words, palette="Blues", ax=ax2)
     ax2.set_title('Top 10 Most Frequently Occuring Words')
