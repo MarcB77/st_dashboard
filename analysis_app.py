@@ -33,7 +33,7 @@ def most_common_words(corpus):
     for word, count in mostCommon:
         words.append(word)
         freq.append(count)
-    return word, freq
+    return words, freq
 
 
 image = Image.open('image/southfields_logo.png')
