@@ -18,7 +18,7 @@ image = Image.open('image/southfields_logo.png')
 st.image(image)
 
 st.write(""" # South-Fields Analysis """)
-selected_sport = st.multiselect("Select het type sport waarvan je een analyze wilt doen",
+selected_sport = st.multiselect("Selecteer een type sport:",
                max_selections=1,
                options=df.Type_sport.unique(),
                default="Voetbal"
