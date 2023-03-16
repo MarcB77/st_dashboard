@@ -3,56 +3,16 @@ import seaborn as sns
 import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
-from collections import Counter
 from wordcloud import STOPWORDS, WordCloud
 from nltk.probability import FreqDist
-from tqdm import trange
-from sklearn.feature_extraction.text import CountVectorizer
 
+from utils.analysis import get_corpus, most_common_words, Bigrams, Trigrams
 
 
 df = pd.read_csv('./sample_dataset/labeled_dataset.csv')
 df['word_count'] = df['Prompt'].apply(lambda x: len(x.split()))
 sns.set(rc={'axes.facecolor':'#FFFFFF', 'figure.facecolor':'#FFFFFF'})
 
-def _corpus(text):
-    text_list = text.split()
-    return text_list
-
-def get_corpus(df):
-    df['Prompt_lists'] = df['Prompt'].apply(_corpus)
-    corpus = []
-    for i in trange(df.shape[0], ncols=150, nrows=10, colour='green', smoothing=0.8):
-        corpus += df['Prompt_lists'][i]
-    len(corpus)
-    return corpus
-
-def most_common_words(corpus):
-    mostCommon = Counter(corpus).most_common(10)
-    words = []
-    freq = []
-    for word, count in mostCommon:
-        words.append(word)
-        freq.append(count)
-    return words, freq
-
-def Bigrams(df):
-    cv = CountVectorizer(ngram_range=(2,2))
-    bigrams = cv.fit_transform(df['Prompt'])
-
-    count_values = bigrams.toarray().sum(axis=0)
-    ngram_freq = pd.DataFrame(sorted([(count_values[i], k) for k, i in cv.vocabulary_.items()], reverse = True))
-    ngram_freq.columns = ["frequency", "ngram"]
-    return ngram_freq, "Bigrams"
-
-def Trigrams(df):
-    cv1 = CountVectorizer(ngram_range=(3,3))
-    trigrams = cv1.fit_transform(df['Prompt'])
-
-    count_values = trigrams.toarray().sum(axis=0)
-    ngram_freq = pd.DataFrame(sorted([(count_values[i], k) for k, i in cv1.vocabulary_.items()], reverse = True))
-    ngram_freq.columns = ["frequency", "ngram"]
-    return ngram_freq, "Trigrams"
 
 image = Image.open('image/southfields_logo.png')
 st.image(image)
@@ -66,7 +26,7 @@ selected_sport = st.multiselect("Select het type sport waarvan je een analyze wi
 
 
 if selected_sport != []:
-    fig = plt.figure(figsize=(10,8))
+    fig = plt.figure(figsize=(15,8))
     ax1 = fig.add_subplot(5, 1, 1)
     ax2 = fig.add_subplot(5, 1, 2)
     ax3 = fig.add_subplot(5, 1, 3)
