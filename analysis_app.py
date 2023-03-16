@@ -2,6 +2,7 @@ import pandas as pd
 import seaborn as sns
 import streamlit as st
 from PIL import Image
+import matplotlib.pyplot as plt
 
 df = pd.read_csv('./sample_dataset/labeled_dataset.csv')
 df['word_count'] = df['Prompt'].apply(lambda x: len(x.split()))
@@ -16,8 +17,11 @@ selected_sport = st.multiselect("Select het type sport waarvan je een analyze wi
                default="Voetbal"
                )
 
-word_count_plot = sns.histplot(
+fig = plt.figure(figsize=(10,5))
+sns.histplot(
     df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
     palette="Blues", binwidth = 1, alpha = 0.6
     )
-st.pyplot(word_count_plot)
+fig.title('Total amount of words')
+
+st.pyplot(fig)
