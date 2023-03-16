@@ -13,12 +13,12 @@ df = pd.read_csv('./sample_dataset/labeled_dataset.csv')
 df['word_count'] = df['Prompt'].apply(lambda x: len(x.split()))
 sns.set(rc={'axes.facecolor':'#100c44', 'figure.facecolor':'#FFFFFF'})
 
-def corpus(text):
+def _corpus(text):
     text_list = text.split()
     return text_list
 
 def get_corpus(df):
-    df['Prompt_lists'] = df['Prompt'].apply(corpus)
+    df['Prompt_lists'] = df['Prompt'].apply(_corpus)
     corpus = []
     for i in df.shape[0]:
         corpus += df['Prompt_lists'][i]
