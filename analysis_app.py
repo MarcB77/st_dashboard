@@ -11,7 +11,8 @@ st.image(image)
 st.write(""" # South-Fields Analysis """)
 selected_sport = st.multiselect("Select het type sport waarvan je een analyze wilt doen",
                max_selections=1,
-               options=df.Type_sport.unique()
+               options=df.Type_sport.unique(),
+               default="Voetbal"
                )
 
 word_count_plot = sns.histplot(
