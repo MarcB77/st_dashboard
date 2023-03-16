@@ -52,7 +52,7 @@ if selected_sport != []:
     ax1 = fig.add_subplot(3, 1, 1)
     ax2 = fig.add_subplot(3, 1, 2)
     ax3 = fig.add_subplot(3, 1, 3)
-    plt.subplots_adjust(hspace=0.2)
+    plt.subplots_adjust(hspace=2.2)
     sns.histplot(
         df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
         palette="Blues", binwidth = 1, alpha = 0.6, ax=ax1
