@@ -25,7 +25,7 @@ selected_sport = st.sidebar.multiselect("Selecteer een type sport:",
                default="Voetbal"
                )
 
-binsize = st.sidebar.slider("Bin size", max_value=2.0, min_value=0.1, value=1.0)
+amount_words = st.sidebar.slider("Bin size", max_value=25, min_value=5, value=10)
 
 with st.spinner("Een momentje..."):
     if selected_sport != []:
@@ -38,16 +38,16 @@ with st.spinner("Een momentje..."):
         plt.subplots_adjust(hspace=0.5)
         sns.histplot(
             df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
-            color="#FFFFFF", binwidth = binsize, alpha = 0.7, ax=ax1
+            color="#FFFFFF", binwidth = 1, alpha = 0.7, ax=ax1
             )
         ax1.set_title('Totaal aantal woorden')
         ax1.set_xlabel("Aantal woorden")
         ax1.set_ylabel("Aantal samenvatting\nmet dit aantal woorden")
 
         corpus = get_corpus(df)
-        words, freq = most_common_words(corpus)
+        words, freq = most_common_words(corpus, amount_words=amount_words)
         sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2)
-        ax2.set_title('Top 10 meest voorkomende woorden')
+        ax2.set_title('Top {} meest voorkomende woorden'.format(amount_words))
 
         wordcloud= WordCloud(max_font_size=60, max_words=100,width=1000,height=200, stopwords=STOPWORDS, background_color='#FFFFFF').generate_from_frequencies(
         FreqDist([word for prompt in df.Prompt_lists for word in prompt])
@@ -59,10 +59,10 @@ with st.spinner("Een momentje..."):
 
         ngram_freq, ngram_type = Bigrams(df)
         sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#FFFFFF", ax=ax4)
-        ax4.set_title('Top 10 meest voorkomende {}'.format(ngram_type))
+        ax4.set_title('Top {} meest voorkomende {}'.format(amount_words, ngram_type))
 
         ngram_freq, ngram_type = Trigrams(df)
         sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#FFFFFF", ax=ax5)
-        ax5.set_title('Top 10 meest voorkomende {}'.format(ngram_type))
+        ax5.set_title('Top {} meest voorkomende {}'.format(amount_words, ngram_type))
 
         st.pyplot(fig)

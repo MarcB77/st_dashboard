@@ -16,8 +16,8 @@ def get_corpus(df):
     len(corpus)
     return corpus
 
-def most_common_words(corpus):
-    mostCommon = Counter(corpus).most_common(10)
+def most_common_words(corpus, amount_words):
+    mostCommon = Counter(corpus).most_common(amount_words)
     words = []
     freq = []
     for word, count in mostCommon:
