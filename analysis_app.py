@@ -47,7 +47,7 @@ with st.spinner("Een momentje..."):
         sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2)
         ax2.set_title('Top 10 meest voorkomende woorden')
 
-        wordcloud= WordCloud(max_font_size=60, max_words=100,width=1000,height=200, stopwords=STOPWORDS, background_color='#FFFFFF', colormap='gist_ncar').generate_from_frequencies(
+        wordcloud= WordCloud(max_font_size=60, max_words=100,width=1000,height=200, stopwords=STOPWORDS, background_color='#FFFFFF').generate_from_frequencies(
         FreqDist([word for prompt in df.Prompt_lists for word in prompt])
         )
         ax3.imshow(wordcloud)
