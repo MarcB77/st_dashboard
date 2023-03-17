@@ -5,7 +5,6 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from wordcloud import STOPWORDS, WordCloud
 from nltk.probability import FreqDist
-import time
 
 from utils.analysis import get_corpus, most_common_words, Bigrams, Trigrams
 
@@ -44,7 +43,7 @@ with st.spinner("Een momentje..."):
         ax1.set_xlabel("Aantal woorden")
         ax1.set_ylabel("Aantal samenvatting\nmet dit aantal woorden")
 
-        corpus = get_corpus(df, STOPWORDS)
+        corpus = get_corpus(df)
         words, freq = most_common_words(corpus, amount_words=amount_words)
         sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2)
         ax2.set_title('Top {} meest voorkomende woorden'.format(amount_words))

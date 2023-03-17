@@ -2,15 +2,17 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from collections import Counter
 from tqdm import trange
+from wordcloud import STOPWORDS
 
 
-def _corpus(text, STOPWORDS):
+
+def _corpus(text):
     #text_list = text.split()
     text_list = ' '.join([word for word in text.split() if word not in STOPWORDS])
     return text_list
 
-def get_corpus(df, STOPWORDS):
-    df['Prompt_lists'] = df['Prompt'].apply(_corpus(STOPWORDS=STOPWORDS))
+def get_corpus(df):
+    df['Prompt_lists'] = df['Prompt'].apply(_corpus)
     corpus = []
     for i in trange(df.shape[0], ncols=150, nrows=10, colour='green', smoothing=0.8):
         corpus += df['Prompt_lists'][i]
