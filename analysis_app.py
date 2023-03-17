@@ -25,6 +25,8 @@ selected_sport = st.sidebar.multiselect("Selecteer een type sport:",
                default="Voetbal"
                )
 
+binsize = st.sidebar.slider("Bin size", max_value=60, min_value=1, value=1)
+
 with st.spinner("Een momentje..."):
     if selected_sport != []:
         fig = plt.figure(figsize=(12,15))
@@ -36,7 +38,7 @@ with st.spinner("Een momentje..."):
         plt.subplots_adjust(hspace=0.5)
         sns.histplot(
             df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
-            color="#FFFFFF", binwidth = 1, alpha = 0.7, ax=ax1
+            color="#FFFFFF", binwidth = binsize, alpha = 0.7, ax=ax1
             )
         ax1.set_title('Totaal aantal woorden')
         ax1.set_xlabel("Aantal woorden")
