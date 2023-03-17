@@ -44,7 +44,7 @@ with st.spinner("Een momentje..."):
         ax1.set_xlabel("Aantal woorden")
         ax1.set_ylabel("Aantal samenvatting\nmet dit aantal woorden")
 
-        corpus = get_corpus(df)
+        corpus = get_corpus(df, STOPWORDS)
         words, freq = most_common_words(corpus, amount_words=amount_words)
         sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2)
         ax2.set_title('Top {} meest voorkomende woorden'.format(amount_words))

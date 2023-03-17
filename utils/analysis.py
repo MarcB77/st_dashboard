@@ -4,12 +4,13 @@ from collections import Counter
 from tqdm import trange
 
 
-def _corpus(text):
-    text_list = text.split()
+def _corpus(text, STOPWORDS):
+    #text_list = text.split()
+    text_list = ' '.join([word for word in text.split() if word not in STOPWORDS])
     return text_list
 
-def get_corpus(df):
-    df['Prompt_lists'] = df['Prompt'].apply(_corpus)
+def get_corpus(df, STOPWORDS):
+    df['Prompt_lists'] = df['Prompt'].apply(_corpus(STOPWORDS=STOPWORDS))
     corpus = []
     for i in trange(df.shape[0], ncols=150, nrows=10, colour='green', smoothing=0.8):
         corpus += df['Prompt_lists'][i]
