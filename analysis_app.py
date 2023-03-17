@@ -25,7 +25,7 @@ selected_sport = st.sidebar.multiselect("Selecteer een type sport:",
                default="Voetbal"
                )
 
-binsize = st.sidebar.slider("Bin size", max_value=60, min_value=1, value=1)
+binsize = st.sidebar.slider("Bin size", max_value=2, min_value=0.1, value=1)
 
 with st.spinner("Een momentje..."):
     if selected_sport != []:
