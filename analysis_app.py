@@ -29,7 +29,7 @@ amount_words = st.sidebar.slider("Aantal 'meest' voorkomende woorden", max_value
 
 with st.spinner("Een momentje..."):
     if selected_sport != []:
-        fig = plt.figure(figsize=(12,15))
+        fig = plt.figure(figsize=(20,15))
         ax1 = fig.add_subplot(5, 1, 1)
         ax2 = fig.add_subplot(5, 1, 2)
         ax3 = fig.add_subplot(5, 1, 3)
