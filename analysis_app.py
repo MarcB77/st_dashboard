@@ -14,12 +14,12 @@ df = pd.read_csv('./sample_dataset/labeled_dataset.csv')
 df['word_count'] = df['Prompt'].apply(lambda x: len(x.split()))
 sns.set(rc={'axes.facecolor':'#FFFFFF', 'figure.facecolor':'#FFFFFF'})
 
-
+st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 image = Image.open('image/southfields_logo.png')
 st.image(image)
 
 st.write(""" # South-Fields Analyze """)
-selected_sport = st.multiselect("Selecteer een type sport:",
+selected_sport = st.sidebar.multiselect("Selecteer een type sport:",
                max_selections=1,
                options=df.Type_sport.unique(),
                default="Voetbal"
