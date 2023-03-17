@@ -8,7 +8,7 @@ from wordcloud import STOPWORDS
 
 def _corpus(text):
     #text_list = text.split()
-    text_list = [word for word in text.split() if word not in STOPWORDS]
+    text_list = [word for word in text.lower().split() if word not in STOPWORDS]
     return text_list
 
 def get_corpus(df):
