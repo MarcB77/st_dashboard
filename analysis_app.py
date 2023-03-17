@@ -58,11 +58,11 @@ with st.spinner("Een momentje..."):
         ax3.set_yticks([])
 
         ngram_freq, ngram_type = Bigrams(df)
-        sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#FFFFFF", ax=ax4)
+        sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:amount_words], color="#FFFFFF", ax=ax4)
         ax4.set_title('Top {} meest voorkomende {}'.format(amount_words, ngram_type))
 
         ngram_freq, ngram_type = Trigrams(df)
-        sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:10], color="#FFFFFF", ax=ax5)
+        sns.barplot(x=ngram_freq['frequency'][:10], y=ngram_freq['ngram'][:amount_words], color="#FFFFFF", ax=ax5)
         ax5.set_title('Top {} meest voorkomende {}'.format(amount_words, ngram_type))
 
         st.pyplot(fig)
