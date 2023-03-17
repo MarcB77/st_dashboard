@@ -38,7 +38,7 @@ with st.spinner("Een momentje..."):
         plt.subplots_adjust(hspace=0.5)
         sns.histplot(
             df.loc[df.Type_sport == selected_sport[0]], x='word_count', kde=True, 
-            color="#FFFFFF", binwidth = 1, alpha = 1.0, ax=ax1
+            color="#FFFFFF", binwidth = 1, alpha = 0.9, ax=ax1
             )
         ax1.set_title('Totaal aantal woorden')
         ax1.set_xlabel("Aantal woorden")
