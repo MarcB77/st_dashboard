@@ -25,7 +25,7 @@ selected_sport = st.sidebar.multiselect("Selecteer een type sport:",
                default="Voetbal"
                )
 
-amount_words = st.sidebar.slider("Bin size", max_value=25, min_value=5, value=10)
+amount_words = st.sidebar.slider("Aantal 'meest' voorkomende woorden", max_value=25, min_value=5, value=10)
 
 with st.spinner("Een momentje..."):
     if selected_sport != []:
