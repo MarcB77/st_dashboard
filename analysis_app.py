@@ -12,7 +12,7 @@ from utils.analysis import get_corpus, most_common_words, Bigrams, Trigrams
 
 df = pd.read_csv('./sample_dataset/labeled_dataset.csv')
 df['word_count'] = df['Prompt'].apply(lambda x: len(x.split()))
-sns.set(rc={'axes.facecolor':'#FFFFFF', 'figure.facecolor':'#FFFFFF'})
+sns.set(rc={'axes.facecolor':'#FFFFFF', 'figure.facecolor':'#FFFFFF', 'xtick.color':'white', 'ytick.color':'white', 'title.color':'white'})
 
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 image = Image.open('image/southfields_logo.png')
